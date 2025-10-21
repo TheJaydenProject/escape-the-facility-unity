@@ -1,13 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-/// Handles player interaction with normal, locked, and end doors using raycasting.
+/// Handles player interaction with normal and locked doors using raycasting.
 /// Displays appropriate UI prompts and messages, and logs key events for debugging.
 /// </summary>
 /*
  * Author: Jayden Wong
  * Date: 16/06/2025
- * Description: Detects and interacts with regular, locked, and end doors using a raycast.
+ * Description: Detects and interacts with regular and locked doors using a raycast.
  * Shows specific UI prompts for each type and handles 'E' key interactions.
  */
 
@@ -42,11 +42,6 @@ public class PlayerDoorInteractor : MonoBehaviour
     /// UI prompt shown when a door is locked and cannot be opened.
     /// </summary>
     public GameObject interactPromptLocked;
-
-    /// <summary>
-    /// UI prompt shown when the player reaches the final escape door.
-    /// </summary>
-    public GameObject interactPromptEscape;
 
     /// <summary>
     /// Panel that briefly shows a locked door message when the player lacks a keycard.
@@ -104,7 +99,6 @@ public class PlayerDoorInteractor : MonoBehaviour
             // Try to get the relevant door or trigger component from the object hit
             BasicDoorController door = hit.collider.GetComponentInParent<BasicDoorController>();
             LockedDoorController lockedDoor = hit.collider.GetComponentInParent<LockedDoorController>();
-            EndGameTrigger endTrigger = hit.collider.GetComponentInParent<EndGameTrigger>();
 
             // If a basic door was hit, handle open/close interaction
             if (door != null)
@@ -112,7 +106,7 @@ public class PlayerDoorInteractor : MonoBehaviour
                 bool isOpen = door.IsOpen();
 
                 // Show appropriate prompt depending on door state
-                SetPromptStates(!isOpen, isOpen, false, false);
+                SetPromptStates(!isOpen, isOpen, false);
 
                 // If 'E' is pressed, toggle the door state
                 if (Input.GetKeyDown(KeyCode.E))
@@ -132,7 +126,7 @@ public class PlayerDoorInteractor : MonoBehaviour
                 bool isOpen = lockedDoor.IsOpen();
 
                 // Show prompts based on lock status and possession of keycard
-                SetPromptStates(hasKeycard && !isOpen, hasKeycard && isOpen, !hasKeycard, false);
+                SetPromptStates(hasKeycard && !isOpen, hasKeycard && isOpen, !hasKeycard);
 
                 // Handle interaction input
                 if (Input.GetKeyDown(KeyCode.E))
@@ -160,26 +154,10 @@ public class PlayerDoorInteractor : MonoBehaviour
 
                 return;
             }
-
-            // If the hit object is tagged as an end trigger, show escape prompt
-            if (hit.collider.CompareTag("End") && endTrigger != null)
-            {
-                SetPromptStates(false, false, false, true);
-
-                // Trigger end game if 'E' is pressed
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    interactPromptEscape.SetActive(false); // Hide escape UI
-                    endTrigger.TriggerEndGame();           // Start end game sequence
-                    Debug.Log("[DoorInteractor] Player escaped via End door");
-                }
-
-                return;
-            }
         }
 
         // No interactable object in front, hide all prompts
-        SetPromptStates(false, false, false, false);
+        SetPromptStates(false, false, false);
     }
 
     /// <summary>
@@ -188,13 +166,11 @@ public class PlayerDoorInteractor : MonoBehaviour
     /// <param name="open">Show open door prompt</param>
     /// <param name="close">Show close door prompt</param>
     /// <param name="locked">Show locked door prompt</param>
-    /// <param name="escape">Show escape door prompt</param>
-    void SetPromptStates(bool open, bool close, bool locked, bool escape)
+    void SetPromptStates(bool open, bool close, bool locked)
     {
         if (interactPromptOpen != null) interactPromptOpen.SetActive(open);
         if (interactPromptClose != null) interactPromptClose.SetActive(close);
         if (interactPromptLocked != null) interactPromptLocked.SetActive(locked);
-        if (interactPromptEscape != null) interactPromptEscape.SetActive(escape);
     }
 
     /// <summary>
