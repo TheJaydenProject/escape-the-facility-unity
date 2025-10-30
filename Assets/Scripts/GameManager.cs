@@ -294,7 +294,7 @@ public class GameManager : MonoBehaviour
             deathText.text = $"Deaths: {stats.Deaths}";
         
         if (coinText != null) 
-            coinText.text = $"Coins: {stats.Coins}/{stats.TotalCoins}";
+            coinText.text = $"Coins: {stats.Coins:D2}/{stats.TotalCoins:D2}";
     }
     
     #endregion

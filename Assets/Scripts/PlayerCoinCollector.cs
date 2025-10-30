@@ -103,7 +103,7 @@ public class PlayerCoinCollector : MonoBehaviour
     void UpdateCoinUI()
     {
         if (coinText != null)
-            coinText.text = collectedCoins + " / " + totalCoins;
+            coinText.text = $"{collectedCoins:D2} / {totalCoins:D2}";
     }
 
     /// <summary>
