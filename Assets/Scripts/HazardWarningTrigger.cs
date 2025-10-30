@@ -5,8 +5,6 @@ using UnityEngine;
 /// Warning is shown only once and disappears after a short duration.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: Handles player-triggered warnings for dangerous zones. Displays a warning UI once when 
  * the player enters the trigger area and hides it after a set time. Useful for introducing environmental hazards.
  */

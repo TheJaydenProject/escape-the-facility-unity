@@ -7,8 +7,6 @@ using System.Collections;
 /// when all coins are collected in the 3D virtual environment.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: This script tracks the number of coins collected by the player using Unity Physics triggers.
  * It updates the UI, plays sound effects on collection, and shows a congrats panel when all are collected.
  */

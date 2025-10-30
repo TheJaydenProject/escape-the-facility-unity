@@ -6,8 +6,6 @@ using System.Collections;
 /// Handles player's health, damage effects, death and respawn system, and death counter.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: Manages the player's health system, including taking damage, showing visual/audio feedback,
  * handling death and respawn logic, cancelling hazard effects, and updating on-screen health UI.
  */
@@ -64,6 +62,8 @@ public class PlayerHealth : MonoBehaviour
     /// </summary>
     private int deathCount = 0;
 
+    private BaseHazard[] cachedHazards;
+
     /// <summary>
     /// Returns how many times the player has died.
     /// </summary>
@@ -79,6 +79,9 @@ public class PlayerHealth : MonoBehaviour
 
         // Update health display
         UpdateHealthUI();
+
+        // Cache hazards once at start
+        cachedHazards = Object.FindObjectsByType<BaseHazard>(FindObjectsSortMode.None);
     }
 
     /// <summary>
@@ -132,9 +135,15 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player died.");
         Debug.Log("Deaths this run: " + deathCount);
 
-        // Stop all active hazard effects on the player
-        foreach (BaseHazard hazard in Object.FindObjectsByType<BaseHazard>(FindObjectsSortMode.None))
-            hazard.CancelDamageFor(gameObject);
+        // Stop all active hazard effects on the player using cached list
+        if (cachedHazards == null || cachedHazards.Length == 0)
+            cachedHazards = Object.FindObjectsByType<BaseHazard>(FindObjectsSortMode.None);
+
+        foreach (BaseHazard hazard in cachedHazards)
+        {
+            if (hazard != null)
+                hazard.CancelDamageFor(gameObject);
+        }
 
         // Temporarily disable character controller for teleporting
         CharacterController controller = GetComponent<CharacterController>();

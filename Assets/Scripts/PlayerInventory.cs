@@ -5,8 +5,6 @@ using UnityEngine;
 /// Provides public methods to update and check item possession status.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: This script manages the player's inventory flags for special items like the keycard
  * and gas mask. Other scripts query this component to determine if the player can access
  * restricted areas or is immune to hazards.
