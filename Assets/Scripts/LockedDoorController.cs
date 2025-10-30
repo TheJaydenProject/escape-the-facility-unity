@@ -26,9 +26,9 @@ public class LockedDoorController : MonoBehaviour, IInteractable
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        player = GameObject.FindGameObjectWithTag(GameTags.Player)?.transform;
         if (player == null)
-            Debug.LogWarning("[LockedDoor] Player not found!");
+            Debug.LogWarning($"[LockedDoor] GameObject tagged '{GameTags.Player}' not found!");
 
         inventory = player?.GetComponent<PlayerInventory>();
         if (inventory == null)

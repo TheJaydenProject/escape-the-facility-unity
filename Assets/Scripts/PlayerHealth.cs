@@ -133,11 +133,8 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Deaths this run: " + deathCount);
 
         // Stop all active hazard effects on the player
-        foreach (WaterHazard water in Object.FindObjectsByType<WaterHazard>(FindObjectsSortMode.None))
-            water.CancelWaterDamageFor(gameObject);
-
-        foreach (GasHazard gas in Object.FindObjectsByType<GasHazard>(FindObjectsSortMode.None))
-            gas.CancelGasDamageFor(gameObject);
+        foreach (BaseHazard hazard in Object.FindObjectsByType<BaseHazard>(FindObjectsSortMode.None))
+            hazard.CancelDamageFor(gameObject);
 
         // Temporarily disable character controller for teleporting
         CharacterController controller = GetComponent<CharacterController>();

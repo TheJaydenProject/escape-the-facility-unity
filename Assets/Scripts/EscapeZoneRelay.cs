@@ -5,7 +5,7 @@ public class EscapeZoneRelay : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(GameTags.Player))
         {
             if (GameManager.Instance != null)
             {
@@ -17,7 +17,7 @@ public class EscapeZoneRelay : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(GameTags.Player))
         {
             if (GameManager.Instance != null)
             {

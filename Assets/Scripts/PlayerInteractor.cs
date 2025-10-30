@@ -51,7 +51,7 @@ public class UnifiedPlayerInteractor : MonoBehaviour
 
     void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerInventory>();
+        inventory = GameObject.FindGameObjectWithTag(GameTags.Player)?.GetComponent<PlayerInventory>();
         if (inventory == null)
             Debug.LogWarning("[UnifiedInteractor] PlayerInventory not found!");
     }
@@ -126,14 +126,14 @@ public class UnifiedPlayerInteractor : MonoBehaviour
         }
 
         // Check for keycard pickup
-        if (target.CompareTag("Keycard"))
+        if (target.CompareTag(GameTags.Keycard))
         {
             ShowPrompt(keycardPrompt);
             return;
         }
 
         // Check for gas mask pickup
-        if (target.CompareTag("GasMask"))
+        if (target.CompareTag(GameTags.GasMask))
         {
             ShowPrompt(gasMaskPrompt);
             return;

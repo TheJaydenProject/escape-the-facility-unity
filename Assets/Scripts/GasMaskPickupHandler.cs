@@ -13,7 +13,7 @@ public class GasMaskPickupHandler : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        PlayerInventory inventory = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerInventory>();
+        PlayerInventory inventory = GameObject.FindGameObjectWithTag(GameTags.Player)?.GetComponent<PlayerInventory>();
         
         if (inventory != null)
         {

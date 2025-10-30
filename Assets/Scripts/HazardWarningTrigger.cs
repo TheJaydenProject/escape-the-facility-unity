@@ -35,7 +35,7 @@ public class HazardWarningTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Only show the warning once and only when the player enters
-        if (!hasShown && other.CompareTag("Player"))
+        if (!hasShown && other.CompareTag(GameTags.Player))
         {
             hasShown = true; // Prevent future triggers
             StartCoroutine(ShowWarning()); // Start the coroutine to display the UI

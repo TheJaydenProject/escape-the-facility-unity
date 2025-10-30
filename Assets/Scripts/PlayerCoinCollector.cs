@@ -78,7 +78,7 @@ public class PlayerCoinCollector : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Check if player collided with a coin object
-        if (other.CompareTag("Coin"))
+        if (other.CompareTag(GameTags.Coin))
         {
             // Play coin sound if available
             if (coinSFX != null)

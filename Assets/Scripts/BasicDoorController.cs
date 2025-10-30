@@ -25,9 +25,9 @@ public class BasicDoorController : MonoBehaviour, IInteractable
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        player = GameObject.FindGameObjectWithTag(GameTags.Player)?.transform;
         if (player == null)
-            Debug.LogWarning("[Door] No GameObject tagged 'Player' found!");
+            Debug.LogWarning($"[Door] No GameObject tagged '{GameTags.Player}' found!");
 
         if (pivot == null)
         {
