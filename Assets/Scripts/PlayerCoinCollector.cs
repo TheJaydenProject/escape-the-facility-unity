@@ -7,8 +7,6 @@ using System.Collections;
 /// when all coins are collected in the 3D virtual environment.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: This script tracks the number of coins collected by the player using Unity Physics triggers.
  * It updates the UI, plays sound effects on collection, and shows a congrats panel when all are collected.
  */
@@ -78,7 +76,7 @@ public class PlayerCoinCollector : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Check if player collided with a coin object
-        if (other.CompareTag("Coin"))
+        if (other.CompareTag(GameTags.Coin))
         {
             // Play coin sound if available
             if (coinSFX != null)
@@ -105,7 +103,7 @@ public class PlayerCoinCollector : MonoBehaviour
     void UpdateCoinUI()
     {
         if (coinText != null)
-            coinText.text = collectedCoins + " / " + totalCoins;
+            coinText.text = $"{collectedCoins:D2} / {totalCoins:D2}";
     }
 
     /// <summary>

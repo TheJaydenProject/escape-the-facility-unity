@@ -5,8 +5,6 @@ using UnityEngine;
 /// Intended for spinning collectibles or objects that draw player attention.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: This script rotates an object around its Y-axis to create a visual cue,
  * typically used for collectibles or interactive items in a Unity 3D environment.
  */

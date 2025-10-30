@@ -5,8 +5,6 @@ using UnityEngine;
 /// Useful for simulating realistic physics like pushing crates or barrels.
 /// </summary>
 /*
- * Author: Jayden Wong
- * Date: 16/06/2025
  * Description: Enables the player to push non-kinematic rigidbody objects by applying horizontal force
  * during collisions. Also logs a message when pushing, throttled to once every few seconds to prevent spam.
  */
