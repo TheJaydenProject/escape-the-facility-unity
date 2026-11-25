@@ -31,3 +31,6 @@
 # Package manager
 Packages/manifest.json
 Packages/packages-lock.json
+
+# Per-user Unity editor preferences
+/UserSettings/
